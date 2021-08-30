@@ -25,14 +25,72 @@ Currently, there have been over 10 million patents granted in the U.S., so the f
     - Instruments
     - Chemistry 
     - Other (which patents I eliminated since I wanted to focus on data with an actual label)
-3) Getting rid of data having more than one classification
-The first claim is typically considered the most important. A smaller amount of data should reduce the computing power required.
-4) Keeping only the first claim for each patent, which is usually the most important claim of a patent.
+
+Below is a breakdown of the number of cases I had for each classification.
+![pic1a](./images/classes.png)
+
+I then trimmed all the classes to have the same amount of cases in each classification since I had plenty of data.
+![pic1b](./images/trimmed_classes.png)
+
+3) Getting rid of patents having more than one classification. For this purpose, I had enough data to rely patents belonging to only one class.
+
+4) Keeping only the first claim for each patent. The first claim is typically considered the most important, and a smaller amount of data should reduce the computing power required.
 
 ## Modeling & Evaluation
 I wanted to look at how a few different sets of models and also compare how they would perform in dual or multiclass situations. 
 
+### Dualclass
+I will focus on looking at the accuracy since the classes are balanced, and no classes are more important than the others to get correct.
+
+#### Model 1 - Logistic Regression
+For my first model, I used logistic regression, and below are the results from the model.
+
+Training Accuracy: 71.67%<br />
+Test Accuracy: 71.87%
+
+Confusion Matrix for test data:<br />
+![pic1](./images/cm_logistic_regression_2class.png)
+
+#### Model 2 - Decision Tree
+For my second model, I used a decision tree classifier. Below are the results.
+
+Training Accuracy: 99.35%<br />
+Test Accuracy: 68.48%
+
+Confusion Matrix for test data:<br />
+![pic2](./images/cm_decision_tree_2class.png)
+
+#### Model 3 - XG Boost
+For my third model, I used a gradient boosted model, XG Boost. Below are the results.
+
+Training Accuracy:74.2%<br />
+Test Accuracy: 74.27%
+
+Confusion Matrix for test data:<br />
+![pic3](./images/cm_xg_boost_2class.png)
+
+#### Model 3a - Grid Searched XG Boost
+
+Comparing the scores, the XG Boost model is the most promising, so running a gridsearch to optimize parameters, we get the following.
+
+Training Accuracy:74.2%<br />
+Test Accuracy: 74.27%
+
+Confusion Matrix for test data:<br />
+![pic3a](./images/cm_xgb_gridsearch_2class.png)
+
+We now want to look at the words that were most important in determining the classification.
+
+Feature importance for XG Boost:<br />
+![pic3b](./images/feature_importance_xgb.png)
+
+The algorithm seems to have picked up on technical keywords like "vehicle" and "signal", but also interestingly seems to have picked up on stylistic words like "provided" and "within". 
+
+Now, let's look at what the major influences on the multiclass model look like.
+
 ### Multiclass
+For my multiclass models, I am relying on accuracy for my metric because my classes are balanced, and no classes are more important than the others to get correct. 
+
 #### Model 1 - Logistic Regression
 For my first model, I used logistic regression, and below are the results from the model.
 
@@ -40,7 +98,7 @@ Training Accuracy: 62.67%<br />
 Test Accuracy: 62.71%
 
 Confusion Matrix for test data:<br />
-![pic1](./images/cm_logistic_regression_4class.png)
+![pic4](./images/cm_logistic_regression_4class.png)
 
 #### Model 2 - Decision Tree
 For my second model, I used a decision tree classifier. Below are the results.
@@ -49,17 +107,31 @@ Training Accuracy: 96.12%<br />
 Test Accuracy: 58.58%
 
 Confusion Matrix for test data:<br />
-![pic2](./images/cm_decision_tree_4class.png)
+![pic5](./images/cm_decision_tree_4class.png)
 
 #### Model 3 - XG Boost
-#### Model 4 - Nearest Neighbors
+For my third model, I used a gradient boosted model, XG Boost. Below are the results.
 
-### Dualclass
-#### Model 1 - Logistic Regression
-#### Model 2 - Decision Tree
-#### Model 3 - XG Boost
-#### Model 4 - Nearest Neighbors
-#### Model 5 - Deep Learning
+Training Accuracy: 65.22%<br />
+Test Accuracy: 65.22%
+
+Confusion Matrix for test data:<br />
+![pic6](./images/cm_xg_boost_4class.png)
+
+Comparing the scores, the XG Boost model is the most promising, so running a gridsearch to optimize parameters, we get the following.
+
+Training Accuracy: 68.53%<br />
+Test Accuracy: 66.98%
+
+Confusion Matrix for test data:<br />
+![pic7](./images/cm_xgb_gridsearch_4class.png)
+
+We now want to look at the words that were most important in determining the classification.
+
+Feature importance for XG Boost:<br />
+![pic8](./images/feature_importance_xgb_4class.png)
+
+With 4 classes, the algorithm seems to have picked up on technical keywords like "vehicle" and "signal", but also interestingly seems to have picked up on stylistic words like "provided" and "within". 
 
 ## Evaluation
 
