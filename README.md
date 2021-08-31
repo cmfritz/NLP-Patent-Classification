@@ -28,9 +28,11 @@ Currently, there have been over 10 million patents granted in the U.S., so the f
 
 Below is a breakdown of the number of cases I had for each classification.
 ![pic1a](./images/classes.png)
+Image by author.
 
 I then trimmed all the classes to have the same amount of cases in each classification since I had plenty of data.
 ![pic1b](./images/trimmed_classes.png)
+Image by author.
 
 3) Getting rid of patents having more than one classification. For this purpose, I had enough data to rely patents belonging to only one class.
 
@@ -50,6 +52,7 @@ Test Accuracy: 71.87%
 
 Confusion Matrix for test data:<br />
 ![pic1](./images/cm_logistic_regression_2class.png)
+Image by author.
 
 #### Model 2 - Decision Tree
 For my second model, I used a decision tree classifier. Below are the results.
@@ -59,6 +62,7 @@ Test Accuracy: 68.48%
 
 Confusion Matrix for test data:<br />
 ![pic2](./images/cm_decision_tree_2class.png)
+Image by author.
 
 #### Model 3 - XG Boost
 For my third model, I used a gradient boosted model, XG Boost. Below are the results.
@@ -68,6 +72,7 @@ Test Accuracy: 74.27%
 
 Confusion Matrix for test data:<br />
 ![pic3](./images/cm_xg_boost_2class.png)
+Image by author.
 
 #### Model 3a - Grid Searched XG Boost
 
@@ -78,11 +83,13 @@ Test Accuracy: 74.27%
 
 Confusion Matrix for test data:<br />
 ![pic3a](./images/cm_xgb_gridsearch_2class.png)
+Image by author.
 
 We now want to look at the words that were most important in determining the classification.
 
 Feature importance for XG Boost:<br />
 ![pic3b](./images/feature_importance_xgb.png)
+Image by author.
 
 The algorithm seems to have picked up on technical keywords like "vehicle" and "signal", but also interestingly seems to have picked up on stylistic words like "provided" and "within".
 
@@ -99,6 +106,7 @@ Test Accuracy: 62.71%
 
 Confusion Matrix for test data:<br />
 ![pic4](./images/cm_logistic_regression_4class.png)
+Image by author.
 
 #### Model 2 - Decision Tree
 For my second model, I used a decision tree classifier. Below are the results.
@@ -108,6 +116,7 @@ Test Accuracy: 58.58%
 
 Confusion Matrix for test data:<br />
 ![pic5](./images/cm_decision_tree_4class.png)
+Image by author.
 
 #### Model 3 - XG Boost
 For my third model, I used a gradient boosted model, XG Boost. Below are the results.
@@ -117,6 +126,7 @@ Test Accuracy: 65.22%
 
 Confusion Matrix for test data:<br />
 ![pic6](./images/cm_xg_boost_4class.png)
+Image by author.
 
 Comparing the scores, the XG Boost model is the most promising, so running a gridsearch to optimize parameters, we get the following.
 
@@ -125,11 +135,13 @@ Test Accuracy: 66.98%
 
 Confusion Matrix for test data:<br />
 ![pic7](./images/cm_xgb_gridsearch_4class.png)
+Image by author.
 
 We now want to look at the words that were most important in determining the classification.
 
 Feature importance for XG Boost:<br />
 ![pic8](./images/feature_importance_xgb_4class.png)
+Image by author.
 
 With 4 classes, the algorithm seems to have picked up on technical keywords like "data" and "device", but also interestingly seems to have picked up on stylistic words like "configured" and "wherein".
 
