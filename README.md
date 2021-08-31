@@ -3,7 +3,7 @@
 ## Business Understanding
 Patents provide a wealth of data since their data has been compiled by a variety of parties in a variety of ways, both public and private. To name a few, public patent data can be accessed via websites for the U.S. Patent & Trademark Office (USPTO), foreign patent offices, Google Patents, etc. Data for this project has been obtained from [PatentsView.org](PatentsView.org), which is a visualization, data dissemination, and analysis platform provided by the USPTO.
 
-Various types of information on patents are connected at various stages in a patent's life, one being the classification of a patent's technology (e.g. mechanical, chemistry, electrical, etc.) This classification is assigned some time after a patent is filed, but it could be useful to try and predict how a patent will be classified before it is filed. In this project, I will be attempting to use machine learning to predict classifications. There are many types of classification systems ranging from broad to very specific, so for the purposes of this project, I will focus on a broader classification system.
+Various types of information on patents are connected at various stages in a patent's life, one being the classification of a patent's technology (e.g. mechanical, chemistry, electrical, etc.) This classification is assigned by the patent Office some time after a patent is filed, but it could be useful to automate the classification process. In this project, I will be attempting to use machine learning to predict classifications. There are many types of classification systems ranging from broad to very specific, so for the purposes of this project, I will focus on a broader classification system.
 
 ## Data Understanding
 To provide some background on how a patent is structured, there are 4 main parts. They are:
@@ -134,14 +134,14 @@ Feature importance for XG Boost:<br />
 With 4 classes, the algorithm seems to have picked up on technical keywords like "vehicle" and "signal", but also interestingly seems to have picked up on stylistic words like "provided" and "within". 
 
 ## Evaluation
-
-## Conclusion
 ### Results
+Based on the performance metrics for both the 2-class and 4-class models, the XG Boost model performed the best. 
+
 ### Recommendations
+- Use machine learning to help automate the classification process for patent Offices or third parties.
+- Practioners could use the model to do a quick check of how their patent will be classified before it is filed. 
 
 ## Deployment
 For More Information, please review my full analysis in Jupyter Notebook or my presentation.
 
 For any additional questions, please contact Catherine Fritz: cmfritz0@gmail.com.
-
-## Repository Structure
