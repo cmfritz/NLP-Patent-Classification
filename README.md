@@ -7,14 +7,14 @@ Various types of information on patents are connected at various stages in a pat
 
 ## Data Understanding
 To provide some background on how a patent is structured, there are 4 main parts. They are:
-1) Coverpage, which provides bibliographic information such as who the inventors are, what the title is, a summary, what patents are related, etc.; 
+1) Coverpage, which provides bibliographic information such as who the inventors are, what the title is, a summary, what patents are related, etc.;
 2) Specification, which provides background information on the given invention;
 3) Drawings, which serve to illustrate the invention; and
-4) Claims, which detail the specific aspects of an invention that the applicant wants legally protected. 
+4) Claims, which detail the specific aspects of an invention that the applicant wants legally protected.
 
 Here is a link to patent [#10 million](https://patentimages.storage.googleapis.com/c0/d5/f7/86ad5b42759506/US10000000.pdf) if you are curious what the actual document looks like.
 
-I mention these because in this project, we will use the first claim of U.S. patents to predict the classification. Claims are much shorter and more specific than the entire specification (a few lines vs. many page) and follow a similar grammatical structure. This structure is a product of patent attorneys seeking to obtain specific and predictable legal protections, and may help in pattern recognition. Alternatively, the styles of the specifications are highly personalized to the author of the patent since the rules for the contents are not as rigid. Lastly, since each patent is required to contain at least one claim, we are guaranteed that there will not be missing data for any given patent we are analyzing. 
+I mention these because in this project, we will use the first claim of U.S. patents to predict the classification. Claims are much shorter and more specific than the entire specification (a few lines vs. many page) and follow a similar grammatical structure. This structure is a product of patent attorneys seeking to obtain specific and predictable legal protections, and may help in pattern recognition. Alternatively, the styles of the specifications are highly personalized to the author of the patent since the rules for the contents are not as rigid. Lastly, since each patent is required to contain at least one claim, we are guaranteed that there will not be missing data for any given patent we are analyzing.
 
 ## Data Preparation
 Currently, there have been over 10 million patents granted in the U.S., so the first thing to do is reduce the amount of data being used for modeling since I am limited to what Google Collab can run in a couple hours. The parameters I used to select the data for training are:
@@ -23,7 +23,7 @@ Currently, there have been over 10 million patents granted in the U.S., so the f
     - Electrical engineering
     - Mechanical engineering
     - Instruments
-    - Chemistry 
+    - Chemistry
     - Other (which patents I eliminated since I wanted to focus on data with an actual label)
 
 Below is a breakdown of the number of cases I had for each classification.
@@ -37,7 +37,7 @@ I then trimmed all the classes to have the same amount of cases in each classifi
 4) Keeping only the first claim for each patent. The first claim is typically considered the most important, and a smaller amount of data should reduce the computing power required.
 
 ## Modeling & Evaluation
-I wanted to look at how a few different sets of models and also compare how they would perform in dual or multiclass situations. 
+I wanted to look at how a few different sets of models and also compare how they would perform in dual or multiclass situations.
 
 ### Dualclass
 I will focus on looking at the accuracy since the classes are balanced, and no classes are more important than the others to get correct.
@@ -84,12 +84,12 @@ We now want to look at the words that were most important in determining the cla
 Feature importance for XG Boost:<br />
 ![pic3b](./images/feature_importance_xgb.png)
 
-The algorithm seems to have picked up on technical keywords like "vehicle" and "signal", but also interestingly seems to have picked up on stylistic words like "provided" and "within". 
+The algorithm seems to have picked up on technical keywords like "vehicle" and "signal", but also interestingly seems to have picked up on stylistic words like "provided" and "within".
 
 Now, let's look at what the major influences on the multiclass model look like.
 
 ### Multiclass
-For my multiclass models, I am relying on accuracy for my metric because my classes are balanced, and no classes are more important than the others to get correct. 
+For my multiclass models, I am relying on accuracy for my metric because my classes are balanced, and no classes are more important than the others to get correct.
 
 #### Model 1 - Logistic Regression
 For my first model, I used logistic regression, and below are the results from the model.
@@ -131,15 +131,15 @@ We now want to look at the words that were most important in determining the cla
 Feature importance for XG Boost:<br />
 ![pic8](./images/feature_importance_xgb_4class.png)
 
-With 4 classes, the algorithm seems to have picked up on technical keywords like "vehicle" and "signal", but also interestingly seems to have picked up on stylistic words like "provided" and "within". 
+With 4 classes, the algorithm seems to have picked up on technical keywords like "data" and "device", but also interestingly seems to have picked up on stylistic words like "configured" and "wherein".
 
 ## Evaluation
 ### Results
-Based on the performance metrics for both the 2-class and 4-class models, the XG Boost model performed the best. 
+Based on the performance metrics for both the 2-class and 4-class models, the XG Boost model performed the best. As for what determined a classification, it appears to be a mix of keywords but also stylistic choices that practioners of each technology area lean towards.
 
 ### Recommendations
 - Use machine learning to help automate the classification process for patent Offices or third parties.
-- Practioners could use the model to do a quick check of how their patent will be classified before it is filed. 
+- Practioners could use the model for a quick check of how their patent will be classified before it is filed.
 
 ## Deployment
 For More Information, please review my full analysis in Jupyter Notebook or my presentation.
