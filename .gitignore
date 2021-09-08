@@ -6,5 +6,6 @@ __pycache__
 *.pytest_cache
 notes.txt
 presentation.pptx
+~$presentation.pptx
 github.pdf
 notebook.pdf
