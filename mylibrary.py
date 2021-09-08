@@ -41,6 +41,43 @@ def merge_and_clean(df1, df2):
     ok_pats.patent_id = ok_pats.patent_id.astype('int64')
     df_merged = ok_pats.merge(df2, how='inner', on='patent_id')
     return df_merged
+
+#################################################################
+def preprocess_text(text):
+    '''
+    Given a string, returns tokenized and stemmed list of words
+    
+    Parameters: 
+    text: string to be tokenized and stemmed
+    
+    Returns:
+    keywords: list of stemmed tokens
+    
+    '''
+    # Import packages and modules
+    import pandas as pd
+    from nltk.stem.porter import PorterStemmer
+    from nltk.tokenize import RegexpTokenizer
+    from nltk.corpus import stopwords
+
+    # Tokenize words while ignoring punctuation
+    tokenizer = RegexpTokenizer(r'\w+')
+    tokens = tokenizer.tokenize(text)
+    
+    # Create stopwords
+    stop_words = stopwords.words('english')
+    custom_stops = ['claim', 'claims', 'method', 'comprising', 'comprises', 'including', 'includes', 'according']
+    [stop_words.append(word) for word in custom_stops]
+
+    # Lowercase and stem
+    stemmer = PorterStemmer()
+    stemmed = []
+    for item in tokens:
+        stemmed.append(stemmer.stem(item.lower()))
+    
+    # Remove stopwords
+    keywords= [stem for stem in stemmed if stem not in stop_words]
+    return stemmed
     
 #################################################################
 def train_and_predict(model, X_train, X_test, y_train):
@@ -70,7 +107,7 @@ def model_scores(model, model_name,
                  X_train, X_test, 
                  y_train, y_test):
     '''
-    Takes model and test train data objects and generates scores and confusion matrix.
+    Takes untrained model and test train data objects and generates scores and confusion matrix.
     
     Parameters: 
     model: object containing initialized model for training
@@ -89,44 +126,55 @@ def model_scores(model, model_name,
 
     scores = {}
 
-    # Caclulate accuracy for test data= 
+    # Calculate accuracy for test data 
     scores['train_accuracy'] = accuracy_score(y_train, y_hat_train)
 
-    # Caclulate accuracy for test data
+    # Calculate accuracy for test data
     scores['test_accuracy'] = accuracy_score(y_test, y_hat_test)
     
     no_classes = len(set(y_train))
 
     if no_classes < 3:
-        # Caclulate recall for train data
-        scores['train_recall'] = recall_score(y_train, y_hat_train, pos_label='Instruments')
+        # Calculate recall for train data
+        scores['train_recall'] = recall_score(y_train, y_hat_train, pos_label='EE')
     
         # Calculate recall for test data
-        scores['test_recall'] = recall_score(y_test, y_hat_test, pos_label='Instruments')
+        scores['test_recall'] = recall_score(y_test, y_hat_test, pos_label='EE')
     
-        # Caclulate F1 for train data
-        scores['train_f1'] = f1_score(y_train, y_hat_train, pos_label='Instruments')
+        # Calculate F1 for train data
+        scores['train_f1'] = f1_score(y_train, y_hat_train, pos_label='EE')
     
         # Calculate F1 for test data
-        scores['test_f1'] = f1_score(y_test, y_hat_test, pos_label='Instruments')
+        scores['test_f1'] = f1_score(y_test, y_hat_test, pos_label='EE')
+    
+    # Print metrics
+    print(scores)
 
-    # Plot confusion matrix
+    # Plot confusion matrix for train data
+    plot_confusion_matrix(model, X=X_train, y_true=y_train,
+                          values_format = 'd', xticks_rotation='vertical')
+    title(f'{model_name} - Train Data Confusion Matrix')
+    savefig(f'images/cm_{model_name}_Train_{no_classes}class.png', bbox_inches='tight', dpi=300)
+ 
+    # Plot confusion matrix for test data
     plot_confusion_matrix(model, X=X_test, y_true=y_test,
                           values_format = 'd', xticks_rotation='vertical')
     title(f'{model_name} - Test Data Confusion Matrix')
-    savefig(f'images/cm_{model_name}_{no_classes}class.png', bbox_inches='tight', dpi=300)
+    savefig(f'images/cm_{model_name}_Test_{no_classes}class.png', bbox_inches='tight', dpi=300)
+    
     
     return DataFrame(scores, index=[model_name])
 
 #################################################################   
-def model_scores_only(model, model_name,
+def model_scores_pretrained(model, model_name,
                  X_train, X_test, 
-                 y_train, y_test):
+                 y_train, y_test,
+                 disp_conf_matrix=True):
     '''
-    Takes model and test train data objects and generates scores and confusion matrix.
+    Takes already trained model and test train data objects and generates scores and confusion matrix.
     
     Parameters: 
-    model: object containing initialized model for training
+    model: object containing trained model
     Xy: object containing train and test data for X and y sets
     
     Returns:
@@ -156,22 +204,31 @@ def model_scores_only(model, model_name,
 
     if no_classes < 3:
         # Caclulate recall for train data
-        scores['train_recall'] = recall_score(y_train, y_hat_train, pos_label='Instruments')
+        scores['train_recall'] = recall_score(y_train, y_hat_train, pos_label='EE')
     
         # Calculate recall for test data
-        scores['test_recall'] = recall_score(y_test, y_hat_test, pos_label='Instruments')
+        scores['test_recall'] = recall_score(y_test, y_hat_test, pos_label='EE')
     
         # Caclulate F1 for train data
-        scores['train_f1'] = f1_score(y_train, y_hat_train, pos_label='Instruments')
+        scores['train_f1'] = f1_score(y_train, y_hat_train, pos_label='EE')
     
         # Calculate F1 for test data
-        scores['test_f1'] = f1_score(y_test, y_hat_test, pos_label='Instruments')
+        scores['test_f1'] = f1_score(y_test, y_hat_test, pos_label='EE')
 
-    # Plot confusion matrix
-    plot_confusion_matrix(model, X=X_test, y_true=y_test,
-                          values_format = 'd', xticks_rotation='vertical')
-    title(f'{model_name} - Test Data Confusion Matrix')
-    savefig(f'images/cm_{model_name}_{no_classes}class.png', bbox_inches='tight', dpi=300)
+    # Print metrics
+    print(scores)
+    if disp_conf_matrix is True:
+        # Plot confusion matrix for train data
+        plot_confusion_matrix(model, X=X_train, y_true=y_train,
+                              values_format = 'd', xticks_rotation='vertical')
+        title(f'{model_name} - Train Data Confusion Matrix')
+        savefig(f'images/cm_{model_name}_Train_{no_classes}class.png', bbox_inches='tight', dpi=300)
+     
+        # Plot confusion matrix for test data
+        plot_confusion_matrix(model, X=X_test, y_true=y_test,
+                              values_format = 'd', xticks_rotation='vertical')
+        title(f'{model_name} - Test Data Confusion Matrix')
+        savefig(f'images/cm_{model_name}_Test_{no_classes}class.png', bbox_inches='tight', dpi=300)
     
     return DataFrame(scores, index=[model_name])
 
