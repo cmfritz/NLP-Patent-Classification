@@ -55,10 +55,10 @@ I first wanted to see how traditional machine learning models would handle 2 cla
 
 Below is visualization showing the distribution of the classes before and after cleaning.
 
-Class distribution before:
+Class distribution before:<br />
 ![pic1a](./images/EE.png)
 
-Class distribution after:
+Class distribution after:<br />
 ![pic1b](./images/EE_after.png)
 
 I used the above dataframes to train 3 different models:
@@ -92,10 +92,10 @@ Image by author.
 ### Models with 4-classes
 Now that we have a sense how modeling works with 2 classes,  Below is visualization showing the distribution of the classes before and after cleaning.
 
-Class distribution before:
+Class distribution before:<br />
 ![pic4a](./images/countplot.png)
 
-Class distribution after:
+Class distribution after:<br />
 ![pic4b](./images/countplot_after.png)
 
 Next I wanted to see how the same models from the dual class models would perform using all the classes. I  boosted the best-performing model, which was also XG Boost. Below is the confusion matrix and accuracy results.
