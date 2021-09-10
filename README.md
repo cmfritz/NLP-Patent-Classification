@@ -150,3 +150,23 @@ My preliminary but unpublished deep learning model shows extremely promising res
 For More Information, please review my full analysis in the master Jupyter notebook or my presentation.
 
 For any additional questions, please contact Catherine Fritz: cmfritz0@gmail.com.
+
+### Repository Structure
+#### Main Page
+    ├── README.md                              <- The top-level README for reviewers of this project
+    ├── master.ipynb                           <- master notebook
+    ├── notebooks                              <- folder for supplemental notebooks
+    ├── libraries                              <- folder for my modules
+    ├── images                                 <- folder for data visualizations and graphics
+
+#### notebooks
+    ├── data_download.ipynb                    <- Notebook to run to obtain dataset
+    ├── data_clean.ipynb                       <- Notebook to clean the downloaded data
+    ├── analysis_2class.ipynb                  <- Notebook to run to analyze dual class data
+    ├── analysis_4class.ipynb                  <- Notebook to run to analyze multi class data
+
+#### libraries
+    ├── mylibrary.py                          <- Python file with my functions
+
+#### images
+    ├── *.png                                  <- various .png files
