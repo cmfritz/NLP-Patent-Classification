@@ -53,6 +53,11 @@ I wanted to look at how a few different sets of models and also compare how they
 
 I first wanted to see how traditional machine learning models would handle 2 classes. For the dual class scenario, I kept the sector "EE" (Electrical Engineering) and pooled the other categories into "non-EE". I chose to keep EE since it was the largest class in the original dataset, which makes sense since things like electronics and computing are the biggest source of innovation currently. This 2-class prediction could be useful in a scenario, for example, where EE applications needed to be prioritized over others.
 
+Below is visualization showing the distribution of the classes before and after cleaning.
+
+![pic1a](./images/EE.png)
+![pic1b](./images/EE_after.png)
+
 I used the above dataframes to train 3 different models:
 1. Logistic Regression
 2. Decision Tree
@@ -82,6 +87,11 @@ From the confusion matrices, we can see that we can reliably separate the EE pat
 Image by author.
 
 ### Models with 4-classes
+Now that we have a sense how modeling works with 2 classes,  Below is visualization showing the distribution of the classes before and after cleaning.
+
+![pic4a](./images/countplot.png)
+![pic4b](./images/countplot_after.png)
+
 Next I wanted to see how the same models from the dual class models would perform using all the classes. I  boosted the best-performing model, which was also XG Boost. Below is the confusion matrix and accuracy results.
 
 Training Accuracy: 72.1%<br />
