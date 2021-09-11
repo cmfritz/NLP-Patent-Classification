@@ -56,10 +56,10 @@ I first wanted to see how traditional machine learning models would handle 2 cla
 Below is visualization showing the distribution of the classes before and after cleaning.
 
 Class distribution before:<br />
-![pic1a](./images/EE.png)
+<img src="./images/EE.png" alt="drawing" width="500"/>
 
 Class distribution after:<br />
-![pic1b](./images/EE_after.png)
+<img src="./images/EE_after.png" alt="drawing" width="500"/>
 
 I used the above dataframes to train 3 different models:
 1. Logistic Regression
@@ -72,10 +72,10 @@ Training Accuracy: 83.7%<br />
 Test Accuracy: 83.2%<br />
 
 Confusion Matrix for train data:<br />
-<img src="./images/cm_gridsearch_xg_boost_Train_2class.png" alt="drawing" width="600"/>
+<img src="./images/cm_gridsearch_xg_boost_Train_2class.png" alt="drawing" width="500"/>
 
 Confusion Matrix for test data:<br />
-<img src="./images/cm_gridsearch_xg_boost_Test_2class.png" alt="drawing" width="600"/>
+<img src="./images/cm_gridsearch_xg_boost_Test_2class.png" alt="drawing" width="500"/>
 Images by author.
 
 From the confusion matrices, we can see that we can reliably separate the EE patents from the rest. Next, I want to look at the most influential terms. Below shows the permutation importances, which shows the top 5 most important words are:
@@ -86,17 +86,17 @@ From the confusion matrices, we can see that we can reliably separate the EE pat
 - signal
 - first (stem of device, devices, etc.)
 
-![pic3](./images/perm_importance_xgb_4class.png)
+<img src="./images/perm_importance_xgb_4class.png" alt="drawing" width="500"/>
 Image by author.
 
 ### Models with 4-classes
 Now that we have a sense how modeling works with 2 classes,  Below is visualization showing the distribution of the classes before and after cleaning.
 
 Class distribution before:<br />
-![pic4a](./images/countplot.png)
+<img src="./images/countplot.png" alt="drawing" width="500"/>
 
 Class distribution after:<br />
-![pic4b](./images/countplot_after.png)
+<img src="./images/countplot_after.png" alt="drawing" width="500"/>
 
 Next I wanted to see how the same models from the dual class models would perform using all the classes. I  boosted the best-performing model, which was also XG Boost. Below is the confusion matrix and accuracy results.
 
@@ -104,17 +104,17 @@ Training Accuracy: 72.1%<br />
 Test Accuracy: 72.0%<br />
 
 Confusion Matrix for train data:<br />
-![pic4](./images/cm_xgb_gridsearch_Train_4class.png)
+<img src="./images/cm_xgb_gridsearch_Train_4class.png" alt="drawing" width="500"/>
 
 Confusion Matrix for test data:<br />
-![pic5](./images/cm_xgb_gridsearch_Test_4class.png)
+<img src="./images/cm_xgb_gridsearch_Test_4class.png" alt="drawing" width="500"/>)
 Images by author.
 
 The confusion matrix provides some interesting insights. While the train accuracy of 72.1% and test accuracy of 72.0% are an improvement over the previous models, we can see what may be pulling that score down. This model performs best on identifying chemistry (87.1% accuracy) and electrical (78.9% accuracy) patents but struggles more with mechanical (62.4% accuracy) and instrument patents (58.3% accuracy). (I calculated the individual accuracies manually from the test confusion matrix.) I suspect that perhaps instrument topics share vocabulary with the mechanical patents, which I will investigate by looking at the most influential features.
 
 Below shows the permutation importances, which shows the top important words:
 
-![pic6](./images/perm_importance_xgb_4class.png)
+<img src="./images/perm_importance_xgb_4class.png" alt="drawing" width="500"/>
 Image by author.
 
 From these importances, we can see the top 5 words are:
@@ -130,7 +130,7 @@ This is in line with my initial suspicion regarding the poor performance of the 
 
 My final model was trained using the entire dataset and pickled in notebooks mentioned before. I decided to use the multi-class model since it was performing relatively well.
 
-![pic7](./images/cm_Final_Model_4class.png)
+<img src="./images/cm_Final_Model_4class.png" alt="drawing" width="500"/>
 Image by author.
 
 The accuracy of the final model with the holdout data turned out to dip to 60.2%. To me, this indicates that since the holdout patent data predates the patents used in training the final model, there could be shifts in the terms or popular technologies being addressed in these patents.
