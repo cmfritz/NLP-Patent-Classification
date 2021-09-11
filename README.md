@@ -56,10 +56,10 @@ I first wanted to see how traditional machine learning models would handle 2 cla
 Below is visualization showing the distribution of the classes before and after cleaning.
 
 Class distribution before:<br />
-<img src="./images/EE.png" alt="drawing" width="500"/>
+<img src="./images/EE.png" alt="drawing" width="400"/>
 
 Class distribution after:<br />
-<img src="./images/EE_after.png" alt="drawing" width="500"/>
+<img src="./images/EE_after.png" alt="drawing" width="400"/>
 
 I used the above dataframes to train 3 different models:
 1. Logistic Regression
@@ -86,17 +86,17 @@ From the confusion matrices, we can see that we can reliably separate the EE pat
 - signal
 - first (stem of device, devices, etc.)
 
-<img src="./images/perm_importance_xgb_4class.png" alt="drawing" width="500"/>
+<img src="./images/perm_importance_xgb_4class.png" alt="drawing" width="400"/>
 Image by author.
 
 ### Models with 4-classes
 Now that we have a sense how modeling works with 2 classes,  Below is visualization showing the distribution of the classes before and after cleaning.
 
 Class distribution before:<br />
-<img src="./images/countplot.png" alt="drawing" width="500"/>
+<img src="./images/countplot.png" alt="drawing" width="400"/>
 
 Class distribution after:<br />
-<img src="./images/countplot_after.png" alt="drawing" width="500"/>
+<img src="./images/countplot_after.png" alt="drawing" width="400"/>
 
 Next I wanted to see how the same models from the dual class models would perform using all the classes. I  boosted the best-performing model, which was also XG Boost. Below is the confusion matrix and accuracy results.
 
@@ -107,14 +107,14 @@ Confusion Matrix for train data:<br />
 <img src="./images/cm_xgb_gridsearch_Train_4class.png" alt="drawing" width="500"/>
 
 Confusion Matrix for test data:<br />
-<img src="./images/cm_xgb_gridsearch_Test_4class.png" alt="drawing" width="500"/>)
+<img src="./images/cm_xgb_gridsearch_Test_4class.png" alt="drawing" width="500"/>
 Images by author.
 
 The confusion matrix provides some interesting insights. While the train accuracy of 72.1% and test accuracy of 72.0% are an improvement over the previous models, we can see what may be pulling that score down. This model performs best on identifying chemistry (87.1% accuracy) and electrical (78.9% accuracy) patents but struggles more with mechanical (62.4% accuracy) and instrument patents (58.3% accuracy). (I calculated the individual accuracies manually from the test confusion matrix.) I suspect that perhaps instrument topics share vocabulary with the mechanical patents, which I will investigate by looking at the most influential features.
 
 Below shows the permutation importances, which shows the top important words:
 
-<img src="./images/perm_importance_xgb_4class.png" alt="drawing" width="500"/>
+<img src="./images/perm_importance_xgb_4class.png" alt="drawing" width="400"/>
 Image by author.
 
 From these importances, we can see the top 5 words are:
