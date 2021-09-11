@@ -72,10 +72,10 @@ Training Accuracy: 83.7%<br />
 Test Accuracy: 83.2%<br />
 
 Confusion Matrix for train data:<br />
-<img src="./images/cm_gridsearch_xg_boost_Train_2class.png" alt="drawing" width="300"/>
+<img src="./images/cm_gridsearch_xg_boost_Train_2class.png" alt="drawing" width="600"/>
 
 Confusion Matrix for test data:<br />
-![pic2](./images/cm_gridsearch_xg_boost_Test_2class.png)
+<img src="./images/cm_gridsearch_xg_boost_Test_2class.png" alt="drawing" width="600"/>
 Images by author.
 
 From the confusion matrices, we can see that we can reliably separate the EE patents from the rest. Next, I want to look at the most influential terms. Below shows the permutation importances, which shows the top 5 most important words are:
