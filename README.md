@@ -1,5 +1,7 @@
 # Using Natural Language Processing to Classify Patents Technologies
 
+This readme follows the work found in my master notebook, which can be found [HERE] (https://github.com/cmfritz/NLP-Patent-Classification/blob/main/master.ipynb).
+
 ## Business Understanding
 Patents provide a wealth of information since their data has been compiled by a variety of parties in a variety of ways, both public and private. To name a few, public patent data can be accessed via websites provided by the U.S. Patent & Trademark Office (USPTO), foreign patent offices, Google Patents, etc. Data for this project has been obtained from [PatentsView.org](PatentsView.org), which is a visualization, data dissemination, and analysis platform provided by the USPTO.  
 
@@ -53,7 +55,7 @@ I wanted to look at how a few different sets of models and also compare how they
 
 I first wanted to see how traditional machine learning models would handle 2 classes. For the dual class scenario, I kept the sector "EE" (Electrical Engineering) and pooled the other categories into "non-EE". I chose to keep EE since it was the largest class in the original dataset, which makes sense since things like electronics and computing are the biggest source of innovation currently. This 2-class prediction could be useful in a scenario, for example, where EE applications needed to be prioritized over others.
 
-Below is visualization showing the distribution of the classes before and after cleaning.
+Below is visualization showing the distribution of the classes before and after resampling.
 
 Class distribution before:<br />
 <img src="./images/EE.png" alt="drawing" width="400"/>
@@ -128,12 +130,12 @@ This is in line with my initial suspicion regarding the poor performance of the 
 
 ## Deployment - Final Model
 
-My final model was trained using the entire dataset and pickled in notebooks mentioned before. I decided to use the multi-class model since it was performing relatively well.
+My final model was trained using the entire dataset and pickled in [these notebooks](https://github.com/cmfritz/NLP-Patent-Classification/tree/main/notebooks) utilized before. I decided to use the multi-class model since it was performing relatively well.
 
 <img src="./images/cm_Final_Model_4class.png" alt="drawing" width="500"/>
 Image by author.
 
-The accuracy of the final model with the holdout data turned out to dip to 60.2%. To me, this indicates that since the holdout patent data predates the patents used in training the final model, there could be shifts in the terms or popular technologies being addressed in these patents.
+After training the final model, I used a holdout set of data to test the model. The holdout data is for the patents issued in 2010 that has never been used before. The accuracy of the final model with the holdout data turned out to dip to 60.2%. To me, this indicates that since the holdout patent data predates the patents used in training the final model, there could be shifts in the terms or popular technologies being addressed in these patents.
 
 ## Conclusion
 
