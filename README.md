@@ -6,11 +6,11 @@ This readme follows the work found in my master notebook, which can be found [HE
 Patents provide a wealth of information since their data has been compiled by a variety of parties in a variety of ways, both public and private. To name a few, public patent data can be accessed via websites provided by the U.S. Patent & Trademark Office (USPTO), foreign patent offices, Google Patents, etc. Data for this project has been obtained from [PatentsView.org](PatentsView.org), which is a visualization, data dissemination, and analysis platform provided by the USPTO.  
 
 Various types of information on patents are connected at various stages in a patent's life, one being the classification of a patent's technology (e.g. mechanical, chemistry, electrical, etc.) This classification is assigned some time after a patent is filed, but it could be useful to try and predict how a patent will be classified before it is filed. In this project, I will be attempting to use machine learning to predict classifications. There are many types of classification systems ranging from broad to very specific, so for the purposes of this project, I will focus on a broader classification system: the World Intellectual Property Organization's (WIPO) technology fields classifications, found [here](https://patentsview.org/download/data-download-tables). Other patent classification systems, which are those used by patent offices, are more complex and hierarchical, containing hundreds of classifications. For the scale of this project, WIPO's technology fields classifications are the most approachable, having the following five categories:
-    - Electrical engineering
-    - Mechanical engineering
-    - Instruments
-    - Chemistry
-    - Other
+  - Electrical engineering
+  - Mechanical engineering
+  - Instruments
+  - Chemistry
+  - Other
 
 In general, the patent-related insights and information I mention in this project come from my 10+ years of experience as a patent professional, however I also have included a list of references at the end of the readme.
 
