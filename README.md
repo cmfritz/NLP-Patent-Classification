@@ -72,7 +72,7 @@ Training Accuracy: 83.7%<br />
 Test Accuracy: 83.2%<br />
 
 Confusion Matrix for train data:<br />
-![pic1](./images/cm_gridsearch_xg_boost_Train_2class.png)
+<img src="./images/cm_gridsearch_xg_boost_Train_2class.png" alt="drawing" width="300"/>
 
 Confusion Matrix for test data:<br />
 ![pic2](./images/cm_gridsearch_xg_boost_Test_2class.png)
