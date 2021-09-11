@@ -1,6 +1,6 @@
 # Using Natural Language Processing to Classify Patents Technologies
 
-This readme follows the work found in my master notebook, which can be found [HERE] (https://github.com/cmfritz/NLP-Patent-Classification/blob/main/master.ipynb).
+This readme follows the work found in my master notebook, which can be found [HERE](https://github.com/cmfritz/NLP-Patent-Classification/blob/main/master.ipynb).
 
 ## Business Understanding
 Patents provide a wealth of information since their data has been compiled by a variety of parties in a variety of ways, both public and private. To name a few, public patent data can be accessed via websites provided by the U.S. Patent & Trademark Office (USPTO), foreign patent offices, Google Patents, etc. Data for this project has been obtained from [PatentsView.org](PatentsView.org), which is a visualization, data dissemination, and analysis platform provided by the USPTO.  
