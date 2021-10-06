@@ -1,4 +1,4 @@
-# Using Natural Language Processing to Classify Patents Technologies
+# Using Natural Language Processing to Classify Patent Technologies
 
 This readme follows the work found in my master notebook, which can be found [HERE](https://github.com/cmfritz/NLP-Patent-Classification/blob/main/master.ipynb).
 
